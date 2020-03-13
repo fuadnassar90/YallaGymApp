@@ -1,0 +1,47 @@
+<html>
+<head>
+    <script src="https://mepspay.gateway.mastercard.com/checkout/version/54/checkout.js" data-error="errorCallback"
+            data-cancel="cancelCallback"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        function errorCallback(error) {
+            console.log(JSON.stringify(error));
+        }
+
+        function cancelCallback() {
+            console.log('Payment cancelled');
+        }
+        // function completeCallback() {
+        //     console.log('Payment Successful done');
+        // }
+        openMepsTerminal();
+        function openMepsTerminal(data) {
+            Checkout.configure({
+                // session: {
+                //     id: 'SESSION0002424508439F78366928G3',
+                // },
+                merchant: 'TEST9800047300',
+                order: {
+                    amount: 40,
+                    currency: 'JOD',
+                    description: 'Ordered goods',
+                    id: '113358744'
+                },
+                interaction: {
+                    operation: 'PURCHASE',
+                    merchant: {
+                        name: 'Open Sky',
+                        address: {
+                            line1: 'Jordan',
+                            line2: 'Amman - khalda'
+                        }
+                    }
+                }
+            });
+            Checkout.showPaymentPage();
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>
